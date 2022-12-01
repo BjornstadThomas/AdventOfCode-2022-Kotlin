@@ -1,17 +1,37 @@
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
+    fun groupCaloriesTogheter(input: String): List<Int> {
+//        println(input) //Print input for å se opprinnelig liste
+        val inputSplit = input.split("\r\n\r\n")
+            .map{ it.lines()
+                .map( String::toInt ).sum()}
+                .sortedDescending()
+//        println(inputSplit) //Print av sortert liste, descending
+        return inputSplit
     }
 
-    fun part2(input: List<String>): Int {
-        return input.size
+    fun getThreeLargestValuesAndSumThemTogheter(calories: List<Int>): Int {
+        val first = calories.get(0)
+        val second = calories.get(1)
+        val third = calories.get(2)
+        println("Første: " + first).toString()
+        println("Andre: " + second).toString()
+        println("Tredje: " + third).toString()
+
+        val sum = first + second + third
+        return sum
     }
 
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
+    fun part1(input: String): String {
+        return groupCaloriesTogheter(input).first().toString()
+    }
 
-    val input = readInput("Day01")
-    println(part1(input))
-    println(part2(input))
+    fun part2(input: String): String {
+        val calories = groupCaloriesTogheter(input)
+        return getThreeLargestValuesAndSumThemTogheter(calories).toString()
+    }
+
+    val input = readInput("input")
+
+    println("Alven som bærer flest kalorier, bærer: " + part1(input))
+    println("Sum av de tre alvene med mest kalorier: " + part2(input))
 }

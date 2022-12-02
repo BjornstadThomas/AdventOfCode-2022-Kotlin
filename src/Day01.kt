@@ -30,7 +30,7 @@ fun main() {
         return getThreeLargestValuesAndSumThemTogheter(calories).toString()
     }
 
-    val input = readInput("input")
+    val input = readInput("input_Day01")
 
     println("Alven som bærer flest kalorier, bærer: " + part1(input))
     println("Sum av de tre alvene med mest kalorier: " + part2(input))

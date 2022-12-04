@@ -28,6 +28,13 @@ fun main() {
        return 0
     }
 
+    fun checkForCommonCharInThreeStrings (input: List<String>): Char {
+        return input
+            .map { it.toSet() }
+            .reduce { left, right -> left intersect right }
+            .first()
+    }
+
 
     fun splitString(input: String): String {
         val inputSplit = input.split("\r\n")
@@ -49,37 +56,21 @@ fun main() {
 
     fun splitStringPart2(input: String): String {
         val inputSplit = input.split("\r\n")
+        var score = 0
 
-        val a = inputSplit.forEachIndexed { index, s ->
-            println(index)
-            print(s)
-            val list: ArrayList<String> = ArrayList()
-            var counter = 0
+        val chunked = inputSplit.chunked(3)
+//        println(chunked)
 
-            for (counter in 0..2 ) {
-                
-            }
-
-            if (index % 3 == 0 || index == 0) {
-                list.add(s)
-                println(list)
-            }
-            else {
-
-            }
-
-
-
+        chunked.forEachIndexed { index, strings ->
+//            println("Index $index med $strings ")
+            val common = checkForCommonCharInThreeStrings(strings)
+//            println("Common: " + common)
+           score += getValueOfChar(common)
         }
 
-        /* val list = listOf(inputSplit)
-        val listAsThree = list.filter {
-            println("Nummer: " + it)
-            when (it. % 3 == 0)
-        }
-*/
-        return "hei"
+        return score.toString()
     }
+
 
     fun part1(input: String): String {
         return splitString(input)
@@ -92,6 +83,6 @@ fun main() {
 
     val input = readInput("input_Day03")
 
-//    println("Sum av bokstaver (Del 1): " + part1(input))
+    println("Sum av bokstaver (Del 1): " + part1(input))
     println("Sum av authentication-badge (Del 2): " + part2(input))
 }
